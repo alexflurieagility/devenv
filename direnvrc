@@ -110,8 +110,8 @@ use_devenv() {
   if [[ -d "$flake_dir" ]]; then
     files_to_watch+=("$flake_dir/devenv.nix" "$flake_dir/devenv.lock" "$flake_dir/devenv.yaml" "$flake_dir/devenv.local.nix")
     if [[ -f "$flake_dir/devenv.yaml" ]]; then
-      if ! devenv assemble; then
-        log_error "$(devenv version) failed to parse devenv.yaml, make sure to use version 0.6 or newer and fix the errors above."
+      if ! "$DEVENV_BIN" assemble; then
+        log_error "$($DEVENV_BIN version) failed to parse devenv.yaml, make sure to use version 0.6 or newer and fix the errors above."
         exit 0
       fi
 
